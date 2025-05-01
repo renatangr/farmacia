@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import farmacia.model.Produto;
 import farmacia.repository.ProdutoRepository;
+import farmacia.util.Cores;
 
 public class ProdutoController implements ProdutoRepository {
 
@@ -12,7 +13,8 @@ public class ProdutoController implements ProdutoRepository {
 	
 	@Override
 	public void criarProduto(Produto produto) {
-		// TODO Auto-generated method stub
+		produtosCadastrados.add(produto);
+		System.out.println(Cores.VERDE + "\n Produto " + produto.getNome() + " cadastrado com sucesso!" + Cores.RESET);
 		
 	}
 
@@ -40,6 +42,10 @@ public class ProdutoController implements ProdutoRepository {
 	public void deletarProduto(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public int gerarNumero() {
+		return ++ id;
 	}
 
 
