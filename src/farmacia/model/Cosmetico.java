@@ -19,8 +19,10 @@ public class Cosmetico extends Produto {
 
 	@Override
 	public void visualizar() {
-		// TODO Auto-generated method stub
 		super.visualizar();
+		System.out.println("FRAGRÂNCIA: " + this.fragancia);
+		System.out.println("─────────────────────────────────────");
+		
 	}
 	
 	

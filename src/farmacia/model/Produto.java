@@ -1,5 +1,7 @@
 package farmacia.model;
 
+import java.text.NumberFormat;
+
 public abstract class Produto {
 	
 	// Atributos da classe produto
@@ -43,7 +45,21 @@ public abstract class Produto {
 	}
 	
 	// Método visualizar
-	public void visualizar() {};
+	public void visualizar() {
+		NumberFormat nfMoeda = NumberFormat.getCurrencyInstance();
+		String tipo = "";
+		
+		switch(this.tipo) {
+		case 1 -> tipo = "Medicamento";
+		case 2 -> tipo = "Cosmético";
+		}
+		
+		System.out.println("ID: " + this.id);
+		System.out.println("NOME: " + this.nome);
+		System.out.println("PREÇO: " + nfMoeda.format(this.preco));
+		System.out.println("TIPO: " + tipo);
+
+	};
 	
 
 }
