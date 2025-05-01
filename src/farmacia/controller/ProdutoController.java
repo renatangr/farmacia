@@ -28,8 +28,17 @@ public class ProdutoController implements ProdutoRepository {
 
 	@Override
 	public void consultarProdutoPorId(int id) {
-		// TODO Auto-generated method stub
 		
+		var produto = buscarNaCollection(id);
+		
+		if(produto != null) {
+			System.out.println("\n┌───────────────────────────────────┐");
+            System.out.println("│         PRODUTO ENCONTRADO        │");
+            System.out.println("└───────────────────────────────────┘");
+			produto.visualizar();
+		} else {
+			System.err.println(" Nenhum resultado obtido pela busca com o ID " + id + ".");
+		}
 	}
 
 	@Override
@@ -46,6 +55,17 @@ public class ProdutoController implements ProdutoRepository {
 	
 	public int gerarNumero() {
 		return ++ id;
+	}
+	
+	public Produto buscarNaCollection(int id) {
+		
+		for(var produto : produtosCadastrados) {
+			if(id == produto.getId()) {
+				return produto;
+			}
+			
+		}
+		return null;
 	}
 
 

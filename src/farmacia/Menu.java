@@ -79,6 +79,12 @@ public class Menu {
 		            } while(true);
 		            
 		        }
+		        case 3 -> {
+		        	System.out.print(" Digite o ID do produto: ");
+		        	id = leia.nextInt();
+		        	produtos.consultarProdutoPorId(id);
+		        	
+		        }
 		        case 5 -> {
 		        	System.out.println("\n┌──────────────────────────────┐");
 		            System.out.println("│     PRODUTOS CADASTRADOS     │");
