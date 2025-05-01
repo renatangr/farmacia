@@ -54,10 +54,10 @@ public abstract class Produto {
 		case 2 -> tipo = "Cosmético";
 		}
 		
-		System.out.println("ID: " + this.id);
-		System.out.println("NOME: " + this.nome);
-		System.out.println("PREÇO: " + nfMoeda.format(this.preco));
-		System.out.println("TIPO: " + tipo);
+		System.out.println(" ID: " + this.id);
+		System.out.println(" NOME: " + this.nome);
+		System.out.println(" PREÇO: " + nfMoeda.format(this.preco));
+		System.out.println(" TIPO: " + tipo);
 
 	};
 	

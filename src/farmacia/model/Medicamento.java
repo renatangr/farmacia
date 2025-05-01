@@ -23,7 +23,7 @@ public class Medicamento extends Produto {
 	@Override
 	public void visualizar() {
 		super.visualizar();
-		System.out.println("GENÉRICO: " + this.generico);
+		System.out.println(" GENÉRICO: " + this.generico);
 		System.out.println("─────────────────────────────────────");
 
 	}

@@ -20,7 +20,7 @@ public class Cosmetico extends Produto {
 	@Override
 	public void visualizar() {
 		super.visualizar();
-		System.out.println("FRAGRÂNCIA: " + this.fragancia);
+		System.out.println(" FRAGRÂNCIA: " + this.fragancia);
 		System.out.println("─────────────────────────────────────");
 		
 	}

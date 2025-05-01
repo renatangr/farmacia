@@ -17,6 +17,16 @@ public class Menu {
 		String nome, fragrancia, generico;
 		float preco;
 		
+		// Cria contas teste
+		Medicamento md1 = new Medicamento(produtos.gerarNumero(), "Puran", 1, 10.20f, "Levotiroxina");
+		produtos.criarProduto(md1);
+		produtos.criarProduto(new Medicamento(produtos.gerarNumero(), "Queropax", 1, 190.20f, "Hemifumarato de Quetiapina"));
+		
+		Cosmetico cm1 = new Cosmetico(produtos.gerarNumero(),"Shampoo de Babosa Natural", 2, 30.50f, "Doce");
+		produtos.criarProduto(cm1);
+		produtos.criarProduto(new Cosmetico(produtos.gerarNumero(), "Condicionador de Babosa Natural", 2, 35.60f, "Doce"));
+		
+				
 		while(true) {
 			System.out.println("┌──────────────────────────────┐");
 	        System.out.println("│       MENU PRINCIPAL         │");
@@ -74,6 +84,12 @@ public class Menu {
 		            System.out.println("│     PRODUTOS CADASTRADOS     │");
 		            System.out.println("└──────────────────────────────┘");
 		            produtos.listarTodosProdutos();
+		        }
+		        
+		        case 0 -> {
+		        	System.out.println(" Saindo do sistema... Até logo!");
+		        	leia.close();
+		        	System.exit(0);
 		        }
 	        } 
 		}
