@@ -96,9 +96,9 @@ classDiagram
     }
 
     class Cosmetico {
-        -String fragancia
-        +getFragancia()
-        +setFragancia()
+        -String fragrancia
+        +getFragrancia()
+        +setFragrancia()
         +visualizar()
     }
 
