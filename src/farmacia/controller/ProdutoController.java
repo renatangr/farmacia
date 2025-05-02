@@ -1,6 +1,7 @@
 package farmacia.controller;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import farmacia.model.Produto;
 import farmacia.repository.ProdutoRepository;
@@ -56,9 +57,36 @@ public class ProdutoController implements ProdutoRepository {
 	}
 
 	@Override
-	public void deletarProduto(int id) {
-		// TODO Auto-generated method stub
+	public boolean deletarProduto(int id) {
+		var produto = buscarNaCollection(id);
+		Scanner leia = new Scanner(System.in);
+		String resposta;
 		
+		if(produto != null) {
+			System.out.println("\n┌──────────────────────────────┐");
+            System.out.println("│      PRODUTO CADASTRADO      │");
+            System.out.println("└──────────────────────────────┘");
+			produto.visualizar();
+			do {
+				System.out.print(" Confirma a exclusão do produto? (S/N) ");
+				resposta = leia.nextLine();
+				
+				if(resposta.equalsIgnoreCase("S")) {
+					produtosCadastrados.remove(produto);
+					System.out.println(Cores.VERDE + " O produto foi excluído com sucesso." + Cores.RESET);
+					return false;
+				} else if (resposta.equalsIgnoreCase("N")) {
+					System.out.println(Cores.VERDE + " Operação cancelada." + Cores.RESET);
+					return false;					
+				} else {
+					System.err.println("Inválido.");
+					return true;
+				}
+			} while(true);
+		} else {
+			System.err.println(" Não foi obtido nenhum resultado para o ID pesquisado.");
+			return true;
+		}
 	}
 	
 	public int gerarNumero() {

@@ -8,6 +8,6 @@ public interface ProdutoRepository {
 	public void listarTodosProdutos();
 	public void consultarProdutoPorId(int id);
 	public void atualizarProduto(Produto produto);
-	public void deletarProduto(int id);
+	public boolean deletarProduto(int id);
 	
 }

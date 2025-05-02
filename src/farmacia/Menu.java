@@ -88,11 +88,12 @@ public class Menu {
 		            } while(true);
 		            keyPress();
 		        }
+		        
 		        case 2 -> {
 		        	System.out.println("\n┌──────────────────────────────┐");
 		            System.out.println("│      ATUALIZAR PRODUTO       │");
 		            System.out.println("└──────────────────────────────┘");
-		            System.out.println(" Digite o ID do produto: ");
+		            System.out.print(" Digite o ID do produto: ");
 		            id = leia.nextInt();
 		            
 		            var buscaProduto = produtos.buscarNaCollection(id);
@@ -127,13 +128,31 @@ public class Menu {
 		            	System.err.println(" Nenhum resultado obtido pela busca com o ID " + id + ".");
 		            }
 		        	keyPress();
-		        			        }
+		        }
+		        
 		        case 3 -> {
 		        	System.out.print(" Digite o ID do produto: ");
 		        	id = leia.nextInt();
 		        	produtos.consultarProdutoPorId(id);
 		        	keyPress();
 		        }
+		        
+		        case 4 -> {
+		        	System.out.println("\n┌──────────────────────────────┐");
+		            System.out.println("│       DELETAR PRODUTO        │");
+		            System.out.println("└──────────────────────────────┘");
+		            
+		            boolean retornoFuncao = true;
+		            
+		            do {
+			            System.out.print(" Digite o ID do produto: ");
+			            id = leia.nextInt();
+			            retornoFuncao = produtos.deletarProduto(id);		           
+		            } while(retornoFuncao);
+		            
+		            keyPress();
+		        }
+		        
 		        case 5 -> {
 		        	System.out.println("\n┌──────────────────────────────┐");
 		            System.out.println("│     PRODUTOS CADASTRADOS     │");
@@ -147,6 +166,8 @@ public class Menu {
 		        	leia.close();
 		        	System.exit(0);
 		        }
+		        
+		        default -> System.err.println(" Inválido.");
 	        } 
 		}
 	}
