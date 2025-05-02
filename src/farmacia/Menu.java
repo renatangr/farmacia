@@ -1,5 +1,7 @@
 package farmacia;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import farmacia.controller.ProdutoController;
@@ -13,7 +15,7 @@ public class Menu {
 		ProdutoController produtos = new ProdutoController();
 		
 		Scanner leia = new Scanner(System.in);
-		int opcao, id, tipo;
+		int opcao = -1, id, tipo;
 		String nome, fragrancia, generico;
 		float preco;
 		
@@ -40,8 +42,15 @@ public class Menu {
 	        System.out.println("│                              │");
 	        System.out.println("│ 0 - Sair                     │");
 	        System.out.println("└──────────────────────────────┘");
-	        System.out.print(" Escolha uma opção: ");
-	        opcao = leia.nextInt();
+	        
+		        try {
+		        System.out.print(" Escolha uma opção: ");
+		        opcao = leia.nextInt();
+		        } catch(InputMismatchException e) {
+		        	System.err.println(" Inválido. Digite apenas valores inteiros.");
+		        	leia.nextLine();
+		        	keyPress();
+		        }
 	        
 	        switch(opcao) {
 		        case 1 -> {
@@ -77,19 +86,60 @@ public class Menu {
 				            	System.err.println(" Inválido!");
 				            }
 		            } while(true);
-		            
+		            keyPress();
 		        }
+		        case 2 -> {
+		        	System.out.println("\n┌──────────────────────────────┐");
+		            System.out.println("│      ATUALIZAR PRODUTO       │");
+		            System.out.println("└──────────────────────────────┘");
+		            System.out.println(" Digite o ID do produto: ");
+		            id = leia.nextInt();
+		            
+		            var buscaProduto = produtos.buscarNaCollection(id);
+		            
+		            if (buscaProduto != null) {
+		            	tipo = buscaProduto.getTipo();
+		            	
+		            	System.out.print(" Nome do produto: ");
+			            leia.skip("\\R");
+			            nome = leia.nextLine();
+			            System.out.print(" Preço do produto: ");
+			            preco = leia.nextFloat();
+			            
+				            if(tipo == 1) {
+				            	System.out.print(" Equivalente genérico: ");
+				            	leia.skip("\\R");
+				            	generico = leia.nextLine();
+				            	
+				            	produtos.atualizarProduto(new Medicamento(id, nome, tipo, preco, generico));
+
+				            	
+				            } else if(tipo == 2) {
+				            	System.out.print(" Digite a fragrância do cosmético: ");
+				            	leia.skip("\\R");
+				            	fragrancia = leia.nextLine();
+				            	
+				            	produtos.atualizarProduto(new Cosmetico(id, nome, tipo, preco, fragrancia));
+			            	
+				            }
+		            	
+		            } else {
+		            	System.err.println(" Nenhum resultado obtido pela busca com o ID " + id + ".");
+		            }
+		        	keyPress();
+		        			        }
 		        case 3 -> {
 		        	System.out.print(" Digite o ID do produto: ");
 		        	id = leia.nextInt();
 		        	produtos.consultarProdutoPorId(id);
-		        	
+		        	keyPress();
 		        }
 		        case 5 -> {
 		        	System.out.println("\n┌──────────────────────────────┐");
 		            System.out.println("│     PRODUTOS CADASTRADOS     │");
 		            System.out.println("└──────────────────────────────┘");
 		            produtos.listarTodosProdutos();
+		            keyPress();
 		        }
 		        
 		        case 0 -> {
@@ -98,6 +148,16 @@ public class Menu {
 		        	System.exit(0);
 		        }
 	        } 
+		}
+	}
+	
+	public static void keyPress() {
+		try {
+			System.out.println("\n\n Pressione ENTER para continuar");
+			System.in.read();
+			
+		} catch (IOException e) {
+			System.err.println("Inválido. Pressione ENTER para continuar.");
 		}
 	}
 

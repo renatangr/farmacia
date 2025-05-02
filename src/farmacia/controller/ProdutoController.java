@@ -43,7 +43,15 @@ public class ProdutoController implements ProdutoRepository {
 
 	@Override
 	public void atualizarProduto(Produto produto) {
-		// TODO Auto-generated method stub
+		var buscaProduto = buscarNaCollection(produto.getId());
+		
+		if(buscaProduto != null) {
+			produtosCadastrados.set(produtosCadastrados.indexOf(buscaProduto), produto);
+			System.out.println(Cores.VERDE + "\n O produto ID " + produto.getId() + " foi atualizado com sucesso." + Cores.RESET);
+			
+		} else {
+			System.err.println(" Não foi obtido nenhum resultado para o ID pesquisado.");
+		}
 		
 	}
 
