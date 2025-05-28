@@ -23,10 +23,12 @@ public class Menu {
 		Medicamento md1 = new Medicamento(produtos.gerarNumero(), "Puran", 1, 10.20f, "Levotiroxina");
 		produtos.criarProduto(md1);
 		produtos.criarProduto(new Medicamento(produtos.gerarNumero(), "Queropax", 1, 190.20f, "Hemifumarato de Quetiapina"));
+		produtos.criarProduto(new Medicamento(produtos.gerarNumero(), "Dorflex", 1, 25.29f, "Dipirona, citrato de orfenadrina e cafeína"));
 		
 		Cosmetico cm1 = new Cosmetico(produtos.gerarNumero(),"Shampoo de Babosa Natural", 2, 30.50f, "Doce");
 		produtos.criarProduto(cm1);
 		produtos.criarProduto(new Cosmetico(produtos.gerarNumero(), "Condicionador de Babosa Natural", 2, 35.60f, "Doce"));
+		produtos.criarProduto(new Cosmetico(produtos.gerarNumero(), "Perfume Feminino Good Girl Carolina Herrera", 2, 385.16f, "Doce"));
 		
 				
 		while(true) {
